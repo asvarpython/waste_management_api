@@ -1,0 +1,63 @@
+{% extends "rest_framework/base.html" %}
+{% load rest_framework %}
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    </head>
+<body>
+
+<h1>Profile </h1>
+{% block content %}
+<section style="background-color: #eee;">
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 col-xl-4">
+          <div class="card text-black">
+            <i class="fab fa-apple fa-lg pt-3 pb-1 px-3"></i>
+            <img src="/media/{{sale.product.image }}"
+              class="card-img-top" width="400px" alt="Image" />
+            <div class="card-body">
+              <div class="text-center">
+                <h5 class="card-title">{{ sale.product.name }}</h5>
+                <p class="text-muted mb-4">{{  sale.product.description }}</p>
+              </div>
+              <div>
+                <div class="d-flex justify-content-between">
+                  <span>Unit : </span><span>{{sale.product.unit}}</span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <span>quanity : </span><span>{{sale.qty}}</span>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between total font-weight-bold mt-4">
+                <span>Price : </span><span>{{sale.estimation_price}} Rs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% if not pickup %}
+    <form action="{% url 'pickup' sale_id=sale.pk %}" method="POST">
+      {% if success %}
+      <div class="alert alert-success" role="alert">
+          {{success}}
+        </div>
+      {% endif %}
+      {% csrf_token %}
+      {% render_form serializer template_pack='rest_framework/vertical' %}
+      <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default">Submit</button>
+          </div>
+      </div>
+  </form>
+  {% else %}
+    <div class="alert alert-success" role="alert">
+      {{message}}
+    </div>
+  {% endif %}
+{% endblock %}
+</body></html>

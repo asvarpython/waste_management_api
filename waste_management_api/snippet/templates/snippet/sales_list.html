@@ -1,0 +1,37 @@
+{% extends "rest_framework/base.html" %}
+{% load rest_framework %}
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    </head>
+<body>
+
+<h1>Profile </h1>
+{% block content %}
+<div class="container">
+  <div class="row">
+      <div class="col-md-12">
+          <h3>Sales</h3>
+          <div class="list-group">
+              {% for sale in sales %}
+                <a class="list-group-item clearfix">
+                  {{ sale.product.name }} {{sale.qty}} {{sale.product.unit }} {{sale.estimation_price }} RS
+                    <span class="pull-right">
+                        <a href="{% url 'pickup' sale_id=sale.pk %}">
+                          <span class="btn btn-xs btn-default" >
+                              pickup up <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+                          </span>
+                        </a>
+                    </span>
+                </a>
+              {% endfor %}
+              
+          </div>
+      </div>
+
+      
+  </div>
+</div>
+{% endblock %}
+</body></html>

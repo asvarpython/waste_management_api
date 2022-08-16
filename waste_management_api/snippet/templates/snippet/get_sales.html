@@ -1,0 +1,6 @@
+{% load rest_framework %}
+<ul>
+    {% for sale in sales %}
+    <li>{{ sale.user }}</li>
+    {% endfor %}
+</ul>
