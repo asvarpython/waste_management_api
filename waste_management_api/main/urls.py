@@ -23,10 +23,11 @@ from rest_framework_simplejwt.views import (
 from django.conf import settings
 
 urlpatterns = [
+    path('', include('userapp.urls')),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('rest-auth/', include('rest_auth.urls')),
-    path('', include('rest_auth.registration.urls')),
+    path('signup', include('rest_auth.registration.urls'),name="home_path"),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('snippets/', include('snippet.api.urls')),

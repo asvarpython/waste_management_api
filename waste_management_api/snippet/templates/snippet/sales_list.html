@@ -6,7 +6,9 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     </head>
 <body>
-
+{% block branding %}
+  {% include "userapp/header.html" %}
+{% endblock %}
 <h1>Profile </h1>
 {% block content %}
 <div class="container">

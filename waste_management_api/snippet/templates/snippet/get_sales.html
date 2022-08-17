@@ -1,4 +1,7 @@
 {% load rest_framework %}
+{% block branding %}
+    {% include "userapp/header.html" %}
+  {% endblock %}
 <ul>
     {% for sale in sales %}
     <li>{{ sale.user }}</li>

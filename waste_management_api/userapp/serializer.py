@@ -31,6 +31,7 @@ class RegisterSerializer(serializers.Serializer):
             'last_name': self.validated_data.get('last_name', ''),
             'user_type': self.validated_data.get('user_type', ''),
             'password1': self.validated_data.get('password1', ''),
+            'phone': self.validated_data.get('phone', ''),
             'email': self.validated_data.get('email', ''),
         }
 
@@ -38,6 +39,8 @@ class RegisterSerializer(serializers.Serializer):
         adapter = get_adapter()
         user = adapter.new_user(request)
         self.cleaned_data = self.get_cleaned_data()
+        print("****************self.cleaned_data*********************",self.cleaned_data)
+        user.phone =self.cleaned_data.get("phone")
         adapter.save_user(request, user, self)
         # setup_user_email(request, user, [])
         return user
@@ -53,5 +56,5 @@ class UserDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('pk', 'username', 'email', 'first_name',
-                  'last_name')
+                  'last_name',"phone")
         read_only_fields = ('email', )

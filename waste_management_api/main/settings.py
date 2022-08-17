@@ -191,3 +191,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'default from email'
 
+LOGIN_REDIRECT_URL = 'products-list'
+

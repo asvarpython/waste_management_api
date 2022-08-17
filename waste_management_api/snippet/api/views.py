@@ -55,6 +55,8 @@ class ProductViewSet(viewsets.ModelViewSet):
                                     'update': [IsAuthenticated],
                                     'destroy':[IsAuthenticated],
                                     }
+    # renderer_classes = [TemplateHTMLRenderer]
+    # template_name = 'snippet/product.html'
     def get_queryset(self):
         return Products.objects.all()
 
